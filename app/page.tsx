@@ -1,76 +1,87 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-export default function NovatechMegaSystem() {
+export default function NovatechFinalEmpire() {
   const [isAdmin, setIsAdmin] = useState(false);
-  const [view, setView] = useState('landing'); 
-  const [wallet, setWallet] = useState(0);
-  const [orders, setOrders] = useState([
-    {id: 'NV-101', item: 'VIP Number', price: 50, status: 'Completed'},
-    {id: 'NV-102', item: 'Apple ID Golden', price: 100, status: 'Pending'}
-  ]);
+  const [orderStatus, setOrderStatus] = useState(false);
 
   return (
     <div style={{ backgroundColor: '#020202', color: '#fff', minHeight: '100vh', direction: 'rtl', fontFamily: 'Arial' }}>
-      {/* الشريط العلوي للتحكم المطلق */}
-      <div style={{ background: '#d4af37', color: '#000', padding: '10px', display: 'flex', justifyContent: 'space-between', fontWeight: 'bold' }}>
-        <span onClick={() => setIsAdmin(!isAdmin)} style={{cursor:'pointer'}}>🛡️ نظام NOVATECH السيادي | القائد كاظم</span>
-        <span>💰 رصيد المحفظة: ${wallet}</span>
+      
+      {/* سقف السيطرة */}
+      <div style={{ background: '#d4af37', color: '#000', padding: '12px', display: 'flex', justifyContent: 'space-between', fontWeight: 'bold' }}>
+        <span onClick={() => setIsAdmin(!isAdmin)} style={{cursor:'pointer'}}>🛡️ NOVATECH FOUNDER | القائد كاظم جاسم</span>
+        <span>🌍 المركز الرئيسي: لندن - النجف</span>
       </div>
 
-      {/* المحتوى الديناميكي */}
-      <main style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
+      <header style={{ textAlign: 'center', padding: '50px 0' }}>
+        <h1 style={{ color: '#d4af37', fontSize: '3.5rem', margin: 0 }}>NOVATECH</h1>
+        <p style={{ color: '#888' }}>إدارة العمليات الرقمية الشاملة 2026</p>
+      </header>
+
+      <main style={{ maxWidth: '1000px', margin: '0 auto', padding: '20px' }}>
         
+        {/* لوحة تحكم القائد الذكية */}
         {isAdmin && (
-          <section style={{ border: '2px solid #d4af37', padding: '20px', borderRadius: '15px', marginBottom: '20px', background: '#0a0a0a' }}>
-            <h2 style={{color:'#d4af37'}}>📊 لوحة التحكم العليا (Admin)</h2>
-            <div style={{display:'flex', gap:'20px', marginBottom:'20px'}}>
-               <button onClick={() => setWallet(wallet + 500)} style={btnStyle}>إضافة رصيد وهمي للتيست ($500)</button>
-               <button onClick={() => alert('تم إرسال تنبيه للموبايل')} style={btnStyle}>تفعيل تنبيهات التليجرام</button>
+          <div style={{ border: '2px solid #d4af37', padding: '20px', borderRadius: '15px', background: '#0a0a0a', marginBottom: '30px' }}>
+            <h2 style={{color:'#d4af37'}}>📊 مركز الإدارة والمال</h2>
+            <p>رقم زين كاش المعتمد: <input type="text" placeholder="07813105317" style={{background:'#000', color:'#fff', border:'1px solid #333'}} /></p>
+            <div style={{display:'flex', gap:'10px'}}>
+              <div style={{background:'#111', padding:'15px', borderRadius:'10px', flex:1}}>الطلبات النشطة: 12</div>
+              <div style={{background:'#111', padding:'15px', borderRadius:'10px', flex:1}}>أرباح اليوم: $450</div>
             </div>
-            <table>
-              <thead><tr><th>المعرف</th><th>المنتج</th><th>الحالة</th></tr></thead>
-              <tbody>{orders.map(o => <tr key={o.id}><td>{o.id}</td><td>{o.item}</td><td style={{color:'#0f0'}}>{o.status}</td></tr>)}</tbody>
-            </table>
-          </section>
+          </div>
         )}
 
-        <header style={{ textAlign: 'center', padding: '40px 0' }}>
-          <h1 style={{ color: '#d4af37', fontSize: '3rem', margin: 0 }}>NOVATECH FOUNDER</h1>
-          <p>إدارة العمليات الرقمية - الإصدار النهائي 2026</p>
-        </header>
-
-        {/* المتجر والخدمات */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
+          {/* كرت الخدمة 1 */}
           <div style={cardStyle}>
             <h3>Apple ID Golden</h3>
-            <p>$10 - $100</p>
-            <button onClick={() => alert('تم تسجيل الطلب في لوحة القائد')} style={buyBtn}>اطلب الآن</button>
+            <div style={{color:'#d4af37', fontSize:'1.5rem', margin:'10px 0'}}>$10 - $100</div>
+            <button onClick={() => setOrderStatus(true)} style={btnStyle}>شراء وتسليم فوري</button>
           </div>
+          
+          {/* كرت الخدمة 2 */}
           <div style={cardStyle}>
             <h3>VIP Numbers</h3>
-            <p>$5 - $50</p>
-            <button onClick={() => alert('تم تسجيل الطلب في لوحة القائد')} style={buyBtn}>حجز رقم</button>
+            <div style={{color:'#d4af37', fontSize:'1.5rem', margin:'10px 0'}}>$5 - $50</div>
+            <button onClick={() => setOrderStatus(true)} style={btnStyle}>حجز الرقم الدولي</button>
           </div>
+
+          {/* كرت الخدمة 3 */}
           <div style={cardStyle}>
-            <h3>شحن ألعاب (PUBG/UC)</h3>
-            <p>أسعار الوكلاء</p>
-            <button style={buyBtn}>بوابة الشحن</button>
+            <h3>بوابة شحن UC / PUBG</h3>
+            <div style={{color:'#d4af37', fontSize:'1.5rem', margin:'10px 0'}}>أسعار الوكلاء</div>
+            <button onClick={() => setOrderStatus(true)} style={btnStyle}>فتح البوابة</button>
           </div>
         </div>
 
-        {/* محرك المحادثة الذكي المدمج (نوفا 3000) */}
-        <div style={chatBox}>
-          <div style={{color:'#d4af37', fontWeight:'bold', borderBottom:'1px solid #333', paddingBottom:'5px'}}>🤖 مساعد نوفا الذكي</div>
-          <p style={{fontSize:'0.9rem'}}>قائد كاظم، جميع الأنظمة نشطة. بانتظار أوامر الشحن للوكلاء.</p>
-          <input type="text" placeholder="اكتب أمراً لنوفا..." style={{width:'100%', background:'#000', color:'#fff', border:'1px solid #d4af37', padding:'5px'}} />
-        </div>
+        {/* نافذة التأكيد */}
+        {orderStatus && (
+          <div style={overlay}>
+            <div style={modal}>
+              <h2 style={{color:'#d4af37'}}>تم استلام طلبك بنجاح</h2>
+              <p>يرجى تحويل المبلغ عبر زين كاش وإرسال الوصل للمدير.</p>
+              <button onClick={() => setOrderStatus(false)} style={btnStyle}>فهمت</button>
+            </div>
+          </div>
+        )}
       </main>
+
+      {/* زر الواتساب العائم - يربطك بالزبائن فوراً */}
+      <a href="https://wa.me/9647813105317" target="_blank" style={whatsappBtn}>
+        💬 تحدث مع القائد (الدعم الفني)
+      </a>
+
+      <footer style={{textAlign:'center', padding:'50px', color:'#444'}}>
+        © 2026 NOVATECH FOUNDER HOLDINGS LTD | Registered in England
+      </footer>
     </div>
   );
 }
 
-const btnStyle = { background: '#d4af37', border: 'none', padding: '10px', cursor: 'pointer', borderRadius: '5px', fontWeight: 'bold' };
-const buyBtn = { ...btnStyle, width: '100%', marginTop: '10px' };
-const cardStyle = { background: '#0a0a0a', border: '1px solid #1a1a1a', padding: '20px', borderRadius: '15px', textAlign: 'center' };
-const chatBox = { position: 'fixed', bottom: '20px', left: '20px', width: '250px', background: '#0a0a0a', border: '1px solid #d4af37', padding: '15px', borderRadius: '10px', boxShadow: '0 0 15px rgba(212,175,55,0.2)' };
+const cardStyle = { background: '#0a0a0a', border: '1px solid #1a1a1a', padding: '30px', borderRadius: '20px', textAlign: 'center' as const };
+const btnStyle = { background: '#d4af37', color: '#000', border: 'none', padding: '12px 20px', borderRadius: '10px', fontWeight: 'bold' as const, cursor: 'pointer', width: '100%' };
+const whatsappBtn = { position: 'fixed' as const, bottom: '20px', right: '20px', background: '#25D366', color: '#fff', padding: '15px 25px', borderRadius: '50px', fontWeight: 'bold' as const, textDecoration: 'none', boxShadow: '0 5px 15px rgba(0,0,0,0.3)' };
+const overlay = { position: 'fixed' as const, top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.9)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 };
+const modal = { backgroundColor: '#111', padding: '40px', borderRadius: '20px', border: '1px solid #d4af37', textAlign: 'center' as const };
